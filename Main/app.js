@@ -14,6 +14,7 @@ app.use('/allContents', allContentsRouter);
 app.use('/eat', eatRouter)
 app.use('/need', needRouter)
 
+
 //紀錄請求日誌
 app.use(logger('dev'));
 //將 json 解析為 object
@@ -24,8 +25,13 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use((req, res, next)=>{
+  res.json({
+    ERROR: "URL ERROR"
+  });
+  res.status(404);
+  res.end();
+  next();
 });
 
 // error handler
