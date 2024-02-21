@@ -11,6 +11,7 @@ module.exports = (res, data, status=200)=>{
         eatData: data[0].eatData,
         needData: data[0].needData
     };
+    res.header("Access-Control-Allow-Origin", "*");
     res.status(status);
     res.send(resData);
     res.end();

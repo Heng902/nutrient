@@ -13,7 +13,7 @@ module.exports = (res, data, status=200)=>{
             status: data
         }
     }
-
+    res.header("Access-Control-Allow-Origin", "*");
     res.status(status);
     res.send(resData);
     res.end();

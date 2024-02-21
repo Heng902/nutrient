@@ -7,7 +7,7 @@ module.exports = (res, data, dataTotal=data.length, status=200)=>{
         dataTotal: dataTotal,
         data: data
     };
-
+    res.header("Access-Control-Allow-Origin", "*");
     res.json(Json);
     res.status(status);
     res.end();

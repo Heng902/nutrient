@@ -11,8 +11,8 @@ const eatRouter = require('./routes/eat');
 const needRouter = require('./routes/need');
 app.use('/user', userRouter);
 app.use('/allContents', allContentsRouter);
-app.use('/eat', eatRouter)
-app.use('/need', needRouter)
+app.use('/eat', eatRouter);
+app.use('/need', needRouter);
 
 
 //紀錄請求日誌
@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=>{
+  res.header("Access-Control-Allow-Origin", "*");
   res.json({
     ERROR: "URL ERROR"
   });
