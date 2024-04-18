@@ -7,8 +7,6 @@ const NCsuccess = require("../module/NCsuccess");
 const NCerror = require("../module/NCerror");
 
 
-// 基本連接已寫好 尚未建立規則 例如:頁數 顯示數量
-
 //rules
 // {
 //  (queryString)
@@ -73,17 +71,19 @@ router.get('/', function(req, res) {
   
   // 沒有搜尋時的一般資料 每8筆為一頁
   if(page > 1){
-    NCmodel.find().skip(ignore).limit(8)
+    NCmodel.find()
     .then((dataJSON)=>{
-      NCsuccess(res, dataJSON, dataJSON.length);
+      const targetPagesData = dataJSON.slice(ignore, ignore+8);
+      NCsuccess(res, targetPagesData, dataJSON.length);
     }).catch(()=>{
       NCerror(res, "find", 400);
     })
   }
   else{
-    NCmodel.find().limit(8)
+    NCmodel.find()
     .then((dataJSON)=>{
-      NCsuccess(res, dataJSON, dataJSON.length);
+      const targetPagesData = dataJSON.slice(0, 8);
+      NCsuccess(res, targetPagesData, dataJSON.length);
     }).catch(()=>{
       NCerror(res, "find", 400);
     })

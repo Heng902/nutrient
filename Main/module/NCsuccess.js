@@ -5,7 +5,10 @@ module.exports = (res, data, dataTotal=data.length, status=200)=>{
 
     const Json = {
         dataTotal: dataTotal,
-        data: data
+        target: {
+            data: data,
+            quantity: data.length
+        }
     };
     res.header("Access-Control-Allow-Origin", "*");
     res.json(Json);
